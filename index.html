@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WEBGL</title>
+  <link rel="shortcut icon" type="image/png" href="images/ico_full.png"/>
+  <link rel="stylesheet" href="stylesheet/prism.css">
+  <link rel="stylesheet" href="stylesheet/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+  <!-- Introduction -->
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(https://www.techpats.com/wp-content/uploads/2018/06/shutterstock_1007765257-1520x700-1.jpg);">
+    <div id="class-languages">
+      <i class="fab fa-html5 mr-1" style="color: #f84820"></i>
+      <i class="fab fa-css3-alt mr-1" style="color: #1970b5"></i>
+      <i class="fab fa-js-square mr-1" style="color: #FFE01B"></i>
+    </div>
+    <div class="container">
+      <div class="main">
+        <img src="images/logo.png" alt="">
+        <div class="class-title">
+          <h1>WEBGL</h1>
+        </div>
+      </div>
+      <p>Sais-tu à quoi correspondent les lettres WEBGL? C'est le protocole utilisé en P5.JS pour faire des animations en 3D! Et c'est super facile!</p>
+      <a class="btn btn-primary tl-button" href="#challenge" role="button">Commencer !</a>
+    </div>
+  </div>
+
+  <div class="container" id="challenge">
+
+    <div class="accordion" id="accordionExample">
+
+      <!-- Etape 1 -->
+      <div class="card">
+        <div class="card-header" id="heading1">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+              Etape 1 - Défis à compléter avant celui-ci
+            </button>
+          </h2>
+        </div>
+        <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Avant de t'attaquer à ce défi, on te conseille de compléter les défis suivants:</p>
+            <ol>
+              <li><a href="https://techieslab.github.io/year-prediction_instructions/" target="_blank">En 2020 je serai...</a></li>
+              <li><a href="https://techieslab.github.io/rainbow_instructions/" target="_blank">Ça va bien aller</a></li>
+              <li><a href="https://techieslab.github.io/soap-bubble-adv_instructions/" target="_blank">Bulles de savant</a></li>
+              <li><a href="ttps://techieslab.github.io/10Print/" target="_blank">10 Print</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Etape 2 -->
+      <div class="card">
+        <div class="card-header" id="heading2">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+              Etape 2 - Première Animation
+            </button>
+          </h2>
+        </div>
+        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>On va commencer par une animation très simple, un simple carré qui tourne autour de soi même. Bien sûr, il n'y a pas de 3D dans cela, mais elle sera très facile à rajouter!</p>
+
+            <p>Pour commencer, on va introduire la "dimension" WEBGL. Plutôt que de définir un canvas 400x400 comme normalement, on va ajouter une 3e composante: La composante WEBGL.</p>
+
+            <pre><code class="language-js">
+              createCanvas(400, 400, WEBGL);
+            </code></pre>
+
+            <p>Cette nouvelle dimension correspond en fait à la <b>profondeur</b>, mais cela ne fait pas vraiment sens d'ajouter une taille à la profondeur, on se satisfait de préciser qu'il y a une profondeur.</p>
+
+            <p>En introduisant ce WEBGL, on a accès à de nouvelles fonctions, qui vont nous aider grandement. Par exemple, on peut maintenant définir un carré en utilisant <code>plane()</code>. Le paramètre indique la taille du carré. Comme c'est bien fait, il sera centré au milieu de l'écran!</p>
+
+            <p>On veut maintenant créer une animation. Rien de plus simple! On va se servir de la fonction <code>rotateX()</code> qui fait une rotation au carré. Le paramètre indique l'angle.</p>
+
+            <p>Crée une variable <code>angle</code>, auquel tu ajoutes un certain nombre chaque fois que <code>draw()</code> s'execute, et mets cet angle dans la fonction <code>rotateX()</code>.</p>
+
+            <p><a class="btn btn-danger" data-toggle="collapse" href="#rep1a" role="button" aria-expanded="false" aria-controls="rep1a">Réponse</a></p>
+            <div class="collapse mb-3" id="rep1a">
+              <div class="card card-body">
+                <pre><code class="language-js">
+                  let angle = 0;
+                  
+                  function draw() {
+                    background(220);
+                    plane(70);
+                    angle += 0.02;
+                    rotateX(angle);
+                  }
+                </code></pre>
+              </div>
+            </div>
+
+            <p>Une remarque importante: Il est important de dessiner le carré AVANT de faire la rotation, sinon on ne verra rien.</p>
+
+            <p>Comme tu l'as surement deviné, tu peux utiliser les fonctions <code>rotateY()</code> et <code>rotateZ()</code> aussi. Tu peux même les combiner, et mettre différents angles comme paramètres.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Etape 3 -->
+      <div class="card">
+        <div class="card-header" id="heading3">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              Etape 3 - D'autres figures et des couleurs
+            </button>
+          </h2>
+        </div>
+        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Si tu veux faire tourner une cube plutôt qu'un carré, tu peux utiliser la fonction <code>box()</code>, de nouveau avec paramètre la taille.</p>
+
+            <p>Et pour toutes les autres figures possibles, c'est aussi facile! En effet, il y a 7 figures dites "primitives" que tu peux utiliser. Les voici:</p>
+
+            <p><ul>
+              <li><code>plane()</code></li>
+              <li><code>box()</code></li>
+              <li><code>sphere()</code></li>
+              <li><code>ellipsoid()</code></li>
+              <li><code>cone()</code></li>
+              <li><code>cylinder()</code></li>
+              <li><code>torus()</code></li>
+            </ul></p>
+
+            <p>Pas tous ne prennent qu'un seul paramètre, tu peux essayer lesquels en prennent combien. Certains ont plusieurs options: Par exemple, la fonction <code>plane()</code> peut en prendre 1 (Comme on a vu plus tôt), ou 2 (Hauteur et Largeur). Similairement, la fonction <code>box()</code> peut en prendre 1 ou 3.</p>
+
+            <p>Pour l'instant on a des figures blanches qui flottent dans l'espace. C'est joli, certes, mais si on ajoutait des couleurs?</p>
+
+            <p>Te souviens tu comment tu faisais pour colorier un carré normal? Tu peux reutiliser cela ici!</p>
+
+            <p><a class="btn btn-danger" data-toggle="collapse" href="#rep3a" role="button" aria-expanded="false" aria-controls="rep3a">Réponse</a></p>
+            <div class="collapse mb-3" id="rep3a">
+              <div class="card card-body">
+                <pre><code class="language-js">
+                  fill("red");
+                </code></pre>
+              </div>
+            </div>
+
+            <p>Mais on a d'autres façons de colorier, qui viennet avec WEBGL. La plus facile est <code>normalMaterial()</code>. Il existe d'autres façons, mais on ne va pas les explorer comme elles sont plutôt compliquées et qu'on ne s'en servira pas.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Etape 4 -->
+      <div class="card">
+        <div class="card-header" id="heading4">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+              Etape 4 - Plusieurs figures
+            </button>
+          </h2>
+        </div>
+        <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Essaie de dessiner plusieurs figures ensembles. Elles vont se mettre les unes sur les autres et cela ne sera pas super beau... Heureusement, on a des solutions!</p>
+
+            <p>Les nouvelles functions qu'on a introduites ne prennent pas comme paramètres les positions. Elles sont simplement placées au milieu de l'écran. Donc pour les bouger, on va utiliser des <b>translations</b>.</p>
+
+            <p>La fonction <code>translate()</code> prend 2 paramètres, un pour le décallage en X et l'autre pour le décallage en Y. Essaie de décaler ta figure plus vers le coin en haut à gauche.</p>
+
+            <p>Une chose est claire: Il faut mettre cette fonction avant de dessiner notre figure. Sinon cela ne s'appliquera pas sur la figure... Mais faut-il placer la fonctiona avant ou après les fonctions <code>rotateX(), rotateY(), rotateZ()</code>?</p>
+
+            <p>Essaie les deux! Normalement, les deux fonctionnent, mais donnent des résultats très différents!</p>
+
+            <p>Si tu places le <code>translate()</code> après les <code>rotate()</code>, alors tu vas faire bouger ta figure mais pas le centre de rotation, donc le figure bouge dans tous les sens. Si tu le places avant, tu vas bouger la figure et le centre de rotation, donc la figure va bouger "normalement" mais à un autre moment.</p>
+
+            <p>Il est donc clair qu'on va utiliser la seconde option comme elle est moins "bordélique". Le code pour déplacer ta figure ressemble donc à ceci:</p>
+
+            <pre><code class="language-js">
+              function draw() {
+                background(220);
+                angle += 0.02;
+              
+                translate(-100, -100);
+
+                rotateX(angle);
+                rotateY(angle);
+                rotateZ(angle);
+                            
+                normalMaterial();
+
+                box(70);
+              }
+            </code></pre>
+
+            <p>Comment pourrait-on dessiner plusieurs figures du coup? Une idée assez simple serait de reproduire le code 2 fois, cela marche en géneral... Mais que fait-il reproduire? On n'a pas besoin de re-dessiner l'arrière-plan, et on n'a pas besoin de changer l'angle de nouveau. Mais on doit certainement de nouveau utiliser la fonction <code>translate()</code>, sinon nos deux figures se superposent. Faut-il aussi re-utiliser les fonctions <code>rotate()</code>? Essaie de créer 2 figures qui tournent "joliment" autour d'elles mêmes de façon indépendantes!</p>
+
+            <p>On pourrait donc s'imaginer quelque chose comme ceci: </p>
+
+            <pre><code class="language-js">
+              function draw() {
+                background(220);
+                angle += 0.02;
+              
+                normalMaterial();
+
+                // Figure 1
+                translate(-100, -100);
+
+                rotateX(angle);
+                rotateY(angle);
+                rotateZ(angle);       
+
+                box(70);
+
+                // Figure 2
+                translate(200, 200);
+
+                rotateX(angle);
+                rotateY(angle);
+                rotateZ(angle);       
+
+                box(70);
+              }
+            </code></pre>
+
+            <p>Tu as du mal? C'est normal! Laisse moi t'expliquer pourquoi: Pour ta première figure, tu déplaces le centre de rotation pour que la première figure tourne bien autour d'elle même. Pour la deuxième figure, tu déplaces de nouveau le centre de rotation, mais ta deuxième figure va aussi subir la première rotation. Donc elle part dans tous les sens. C'est un peu technique, et on pourrait l'expliquer de façon plus rigoureuse, mais ce n'est pas bien important. L'important est de conclure que cela ne marche pas.</p>
+
+            <p>Mais comment fait-on alors? On va utiliser des fonctions qui s'appellent <code>push()</code> et <code>pop()</code>. Elles font un peu peur au début, mais elles sont SUPER utiles! Tu vas voir ;-)</p>
+
+            <p>Pour définir une figure, on encadre tout son code par des <code>push() /* ... */ pop()</code>. Cela veut dire qu'avant notre figure, on place un <code>push()</code>, et après, on place un <code>pop()</code>. Cela va ressembler à ceci pour une figure:</p>
+
+            <pre><code class="language-js">
+              function draw() {
+                background(220);
+                angle += 0.02;
+              
+                normalMaterial();
+
+                // Figure 1
+                translate(-100, -100);
+
+                push();
+
+                rotateX(angle);
+                rotateY(angle);
+                rotateZ(angle);       
+
+                box(70);
+                pop();
+              }
+            </code></pre>
+
+            <p>Remarque comment on garde le <code>translate()</code> en dehors des <code>push(), pop()</code>. C'est parce que le translate ne fait pas partie de notre figure, il indique simplement où il se trouve. Maintenant il indique où l'ensemble entre le <code>push()</code> et le <code>pop()</code> se trouve!</p>
+
+            <p>Tu peux ainsi créer plusieurs figures qui tournent indépendamment des autres. C'est super!!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Etape 5 -->
+      <div class="card">
+        <div class="card-header" id="heading5">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+              Etape 5 - Animation Plus Compliquée
+            </button>
+          </h2>
+        </div>
+        <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>On va maintenant s'attaquer à une animation plus compliquée! Tu peux voir le résultat <a href="P5JS/index.html" target="_blank">ici</a>. Es-tu prêt?!</p>  
+
+            <p>Je vais commencer un nouveau projet. Tu peux continuer sur ton ancien si tu en as envie, mais je te conseille de reprendre dès le début. </p>
+
+            <p>Commençons par ce que l'on connaît déjà. On sait qu'il faut ajouter une nouvelle "dimension" lorsqu'on crée le canvas, la "dimension" <code>WEBGL</code>.</p>
+
+            <p>On sait aussi qu'on veut dessiner une boîte. Pour ce faire, on peut se servir d'une des fonctions <i>primitives</i> de WEBGL. Sais-tu laquelle serait très bonne pour notre cas?</p>
+
+            <p>Cette boîte devrait avoir une hauteur qui change avec le temps. On doit donc définir une variable pour déterminer la hauteur. Cette hauteur peut être utilisée dans ton code. </p>
+
+            <p>Essaie déjà de code cela!</p>
+
+            <p><a class="btn btn-danger" data-toggle="collapse" href="#rep5a" role="button" aria-expanded="false" aria-controls="rep5a">Réponse</a></p>
+            <div class="collapse mb-3" id="rep5a">
+              <div class="card card-body">
+                <pre><code class="language-js">
+                  fill("red");
+                </code></pre>
+              </div>
+            </div>
+
+            <p>Pour le moment, on voit juste la boîte de côté. Pour la voir de côté, on peut simplement faire une rotation <b>à angle fixe</b>. Par exemple (À toi de déterminer les valeurs)</p>
+
+            <pre><code class="language-js">
+              rotateX(20);
+              rotateY(10);
+            </code></pre>
+
+            <p>Notre boîte ne bouge pas, mais on voit bien que c'est une boîte 3D parce qu'on la voit en perspective. Super!</p>
+
+            <p>On aimerait alors adapter la hauteur de la boîte à la fin de chaque fois que <code>draw()</code> s'execute. On va donc placer le code pour adapter la taille à la fin de <code>draw()</code>.</p>
+
+            <p>Notre boîte doit s'agrandir jusqu'à un certain point, puis elle doit diminuer, puis elle doit s'agrandir etc. On va donc devoir jouer avec des <b>conditions</b>.</p>
+
+            <p>L'idée est d'avoir une nouvelle variable qui s'appelle "Grandir" (Ou quelque chose dans le style). Lorsque la hauteur est plus grande que 50 (par exemple), cette variable devient négative, et lorsque la hauteur est plus petite que 0, elle redevient positive. L'idée se fonde sur le fait qu'on change la hauteur par cette variable à chaque tour. Voic un exemple:</p>
+
+            <pre><code class="language-js">
+              if(hauteur > 50) {
+                grandir = -2;
+              } 
+              if(hauteur < 0) {
+                grandir = 3;
+              }
+              hauteur += grandir;
+            </code></pre>
+
+            <p>On peut alors ajouter une couleur à notre boîte en utilisant la fonction <code>normalMaterial()</code>.</p>
+
+            <p>Finalement, tu peux faire tourner la boîte autour d'elle même aussi si tu le souhaites. Tu peux également changer la boîte en une autre figure primitive. Tu peux même ajouter plusieurs figures! Sois créatif ;-)</p>
+
+          </div>
+        </div>
+      </div>
+
+      
+
+
+    </div> 
+  </div>
+
+
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="https://techieslab.be/"><i class="fas fa-globe"></i></i></a>
+    <a href="https://www.facebook.com/TechiesLabBrussels"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/TechiesLab"><i class="fab fa-twitter"></i></a>
+  </div>
+  <div class="footer-copyright">
+    <a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/3298561-faites-votre-mise-en-page-avec-flexbox#/id/r-3298711" rel="noopener noreferrer" target="_blank" class="alert-link copyright">
+      <i class="far fa-copyright"></i>
+      2020 Techies Lab ASBL. All rights reserved.
+    </a>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="javascript/prism.js"></script>
+</body>
+</html>
