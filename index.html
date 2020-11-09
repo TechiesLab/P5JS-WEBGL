@@ -286,7 +286,19 @@
             <div class="collapse mb-3" id="rep5a">
               <div class="card card-body">
                 <pre><code class="language-js">
-                  fill("red");
+                  let hauteur = 20;
+
+                  function setup() {
+                    createCanvas(400, 400, WEBGL);
+                  }
+
+                  function draw() {
+                    background(220);
+                    box(100, 100, hauteur);
+
+                    // Faire changer la hauteur
+                    // ...
+                  }
                 </code></pre>
               </div>
             </div>
