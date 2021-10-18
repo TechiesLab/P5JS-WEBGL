@@ -86,15 +86,15 @@
                   
                   function draw() {
                     background(220);
-                    plane(70);
                     angle += 0.02;
                     rotateX(angle);
+		    plane(70);
                   }
                 </code></pre>
               </div>
             </div>
 
-            <p>Une remarque importante: Il est important de dessiner le carré AVANT de faire la rotation, sinon on ne verra rien.</p>
+            <p>Une remarque importante: Il est important de dessiner le carré APRÈS de faire la rotation, sinon on ne verra rien.</p>
 
             <p>Comme tu l'as surement deviné, tu peux utiliser les fonctions <code>rotateY()</code> et <code>rotateZ()</code> aussi. Tu peux même les combiner, et mettre différents angles comme paramètres.</p>
           </div>
